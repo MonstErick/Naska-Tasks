@@ -1,0 +1,83 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap');
+
+
+.logo-naska {
+  width: 300px;
+  max-width: 70%;
+  height: auto;
+}
+
+/* Tarjetas de tareas */
+.tarea {
+  background-color: rgba(207, 162, 133, 0.92);
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+  border: 10px solid #eeeeee;
+  font-family: "Old Standard TT", serif;
+}
+
+/* Título de la tarea */
+.tarea h3 {
+  margin-bottom: 7px;
+  font-size: 2rem;
+  font-family: "Old Standard TT", serif;
+}
+
+/* Textos de la tarea */
+.tarea p {
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+/* Botones */
+.tarea button {
+  margin-top: 8px;
+  margin-right: 5px;
+}
+
+.formulario-card {
+  border-radius: 18px;
+  border: none;
+}
+
+body {
+  background-image: url("../img/background.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.formulario-card {
+  background-color: #8b5e3c;
+  border: 3px solid #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  font-family: "Old Standard TT", serif;
+}
+
+.formulario-card .form-control {
+  background-color: #fffaf5;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+}
+
+.formulario-card .form-control:focus {
+  border-color: #e8c7ad;
+  box-shadow: 0 0 0 0.2rem rgba(232, 199, 173, 0.35);
+}
+
+.formulario-card .btn-primary {
+  background-color: #5c3b27;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.formulario-card .btn-primary:hover {
+  background-color: #704a31;
+}
