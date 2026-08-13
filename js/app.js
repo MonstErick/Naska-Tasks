@@ -1,4 +1,4 @@
-console.log("TaskFlow conectado correctamente");
+console.log("Naska Tasks iniciado correctamente");
 
 //CLASE QUE REPRESENTA UNA TAREA
 
@@ -130,7 +130,7 @@ async function obtenerTareasAPI() {
       );
 
     if (!respuesta.ok) {
-      throw new Error(`Error HTTP: ${respuesra.status}`);
+      throw new Error(`Error HTTP: ${respuesta.status}`);
     }
     
     const tareaGuardada = await respuesta.json();
@@ -143,6 +143,7 @@ async function obtenerTareasAPI() {
 //CONFIGURACIÓN DE FORMULARIO
 
 const formularioTarea = document.getElementById("formulario-tarea");
+const listaTareas = document.getElementById("lista-tareas");
 
 //EVENTOS KEYUP
 
@@ -204,6 +205,7 @@ gestorTareas.tareas.forEach((tarea) => {
 });
   
   configurarBotones();
+}
 
 //CONTADOR DE TIEMPO RESTANTE
 
@@ -240,7 +242,7 @@ function iniciarContador(tarea) {
 
     tarea.intervalo = setInterval(actualizarContador, 1000);
   }
-}
+
 
 //CONFIGURAR BOTONES
 
@@ -281,16 +283,29 @@ function configurarBotones() {
 
         if (tarea) {
           const nuevoTitulo = prompt("Nuevo título:", tarea.titulo);
-          const nuevaDescripcion = prompt("Nueva descripción:", tarea.descripcion);
-          const nuevaFechaLimite = prompt("Nueva fecha límite:", tarea.fechaLimite);
-      
-      gestorTareas.editarTarea(id, nuevoTitulo, nuevaDescripcion, nuevaFechaLimite);
-      
-      guardarTareas();
-      mostrarTareas();
+
+        if (nuevoTitulo === null) return;
+        
+        const nuevaDescripcion = prompt("Nueva descripción:", tarea.descripcion);
+
+        if (nuevaDescripcion === null) return;
+        
+        const nuevaFechaLimite = prompt("Nueva fecha límite:", tarea.fechaLimite);
+
+        if (nuevaFechaLimite === null) return;
+
+    gestorTareas.editarTarea(
+      id,
+      nuevoTitulo,
+      nuevaDescripcion,
+      nuevaFechaLimite
+    );
+
+guardarTareas();
+mostrarTareas();
       }
     });
-    });
+  });
 }
 
 function mostrarInformacionTarea(tarea){
@@ -318,6 +333,17 @@ formularioTarea.addEventListener("submit", (evento) => {
     fechaLimite
   );
 
+// MOSTRAR MENSAJE PROCESANDO
+
+const mensajeProcesando = document.createElement("div");
+
+mensajeProcesando.classList.add("alert", "alert-warning", "text-center");
+mensajeProcesando.textContent = "⏳ Procesando tarea...";
+
+listaTareas.prepend(mensajeProcesando);
+
+  setTimeout(() => {
+    
   gestorTareas.agregarTarea(nuevaTarea);
 
   guardarTareas();
@@ -328,18 +354,17 @@ formularioTarea.addEventListener("submit", (evento) => {
 
   mostrarInformacionTarea(nuevaTarea);
   
-  setTimeout(() => {
-    console.log("Notificación: Tarea agregada correctamente.");
-  }, 2000);
-
   mostrarDatos(nuevaTarea.titulo, nuevaTarea.descripcion, nuevaTarea.estado);
 
   const copiaTareas = [...gestorTareas.tareas];
-  console.log(copiaTareas);
+    console.log(copiaTareas);
 
-  formularioTarea.reset();
+    console.log("Notificación: Tarea agregada Correctamente.");
+    
+    console.log(gestorTareas.tareas);
 
-  console.log(gestorTareas.tareas);
+    formularioTarea.reset();
+}, 2000);
 });
 
 obtenerTareasAPI();
